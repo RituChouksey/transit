@@ -1,0 +1,36 @@
+<div class="row">
+  <div class="col-md-11">
+    <h2>Distance Between Stations</h2>
+  </div>
+</div>
+<div class="row">
+  <form autocomplete="off" #dataForm="ngForm" (ngSubmit)="getDistance()">
+    <div class="form-group">
+      <label for="startStation">Start Station: </label>
+      <label *ngIf="!startStation.valid">
+        Start Station is Required
+      </label>
+      <input id="startStation" name="startStation" type="text"
+             required #startStation="ngModel"
+             [(ngModel)]="stations.start" class="form-control" />
+    </div>
+    <div class="form-group">
+      <label for="endStation">end Station: </label>
+      <label *ngIf="!endStation.valid">
+        End Station is Required
+      </label>
+      <input id="endStaion" type="text" name="endStation" required
+             [(ngModel)]="stations.end" #endStation="ngModel"
+             class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary"
+            [disabled]="dataForm.invalid">
+      Get Distance
+    </button>
+
+  </form>
+  <em *ngIf="error">{{error}}</em>
+</div>
+<div class="row">
+  Calculated Distance: {{distance}}
+</div>
